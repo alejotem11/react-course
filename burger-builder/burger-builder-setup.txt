@@ -1,0 +1,39 @@
+1. $ create-react-app burger-builder
+2. Enable css modules to ensure the classes we create in our css files are scoped to a specific component, so they are not apply globally
+	- $ yarn eject
+	- Configure the webpack.config.js file adding the properties (see the 4.styling-react-components.txt):
+		modules: true,
+		localIdentName: '[name]__[local]__[hash:base64:5]'
+3. Delete the logo
+4. Delete the App.css file
+5.  - Visit https://fonts.google.com and select the font "Open Sans" (click in the + icon)
+	- Click on the "Family Selected" window at the bottom
+	- Click on "Customize"
+	- Select "regular 400" and "bold 700"
+	- Click on "Embed"
+	- Copy the text of the section "Standard @import" and paste it in the index.html file right above the title tag
+	- Add as the first option of the font-family property in the index.css file
+6. Adjust the title tag in the index.html file
+7. Under the "src" folder create the subfolders:
+	- assets
+	- components --> For the stateless components (Functional components AND Class based components when they are not intended to manage any state, e.g. components/Burger/BurgerIngredients.js)
+	- containers --> For the stateful components (Class based components)
+	- hoc		 --> For the higher order components
+	- UI		 --> For some general UI elements
+	** NOTE: The files .firebaserc and firebase.json are generated automatically when you deploy your app to Firebase
+8. $ yarn add prop-types --> To validate the props pass to the react component
+8. $ yarn start
+	NOTE: If you are on Windows:
+	$ rm -rf node_modules
+	$ yarn install
+	$ yarn start
+	
+********************* BACKEND ************************
+We use Firebase as the backend, so we created an app and a database there to manage the orders.
+To make http requests:
+$ yarn add axios
+	Endpoints:
+		Orders:
+			POST: https://react-my-burger-18ba9.firebaseio.com/orders.json --> Note that .json is mandatory to be able to consume the API correctly
+		Ingredients:
+			GET https://react-my-burger-18ba9.firebaseio.com/ingredients.json

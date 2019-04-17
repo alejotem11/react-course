@@ -1,0 +1,43 @@
+Radium module:
+radium --> To use inline styles with pseudo selectors and media queries
+$ yarn add radium
+
+*********************
+CSS Modules: https://github.com/css-modules/css-modules
+CSS Modules let you use the same CSS class name in different files without worrying about naming clashes,
+thus you can scope a style to a specific file
+Using CSS Modules in create-react-app Projects: https://medium.com/nulogy/how-to-use-css-modules-with-create-react-app-9e44bec2b5c2
+
+1. Run the command:
+$ yarn eject
+this command will make available the webpack config files under the config folder
+2. Edit the webpack.config.dev.js and the webpack.config.prod.js file:
+You'll have to find the following part in your webpack.config.js file:
+{
+  test: cssRegex,
+  exclude: cssModuleRegex,
+  ...
+}
+and then edit that entry, to add the properties 'modules' and 'localIdentName'
+as you can see below:
+
+{
+  test: cssRegex,
+  exclude: cssModuleRegex,
+  use: getStyleLoaders({
+      importLoaders: 1,
+      modules: true,
+      localIdentName: '[name]__[local]__[hash:base64:5]'
+  }),
+  ...
+}
+3. Restart the server
+
+See: https://www.udemy.com/react-the-complete-guide-incl-redux/learn/v4/t/lecture/8111608?start=0
+if you somehow also want to define a global (i.e. un-transformed) CSS class in such a .css  file, you can prefix the selector with :global .
+
+Example:
+
+:global .Post { ... }
+
+Alternatively, you can now also use CSS modules without ejecting (you still can though, it won't be a problem). In a non-ejected project created with create-react-app, you can use CSS modules as described here: https://facebook.github.io/create-react-app/docs/adding-a-css-modules-stylesheet

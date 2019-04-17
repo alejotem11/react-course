@@ -1,0 +1,37 @@
+Component lifecycle: The methods available during some point in the lifecycle of a component are executable only in the class based components (Stateful Components), not in the functional components (Stateless Components)
+
+NOTE: React 16.6 advise avoid using the methods:
+- componentWillMount
+- componentWillUpdate
+- componentWillReceiveProps
+Becuase it is very common to use them incorrectly, so an alternative to these React give you the following useful methods:
+ - static getDerivedStateFromProps(nextProps, prevState) --> Executed whenever the props are updated. This is called before render()
+ - getSnapshotBeforeUpdate()
+See: https://reactjs.org/docs/react-component.html
+
+/******************** Lifecycle hooks *****************/
+  /* **** Component Creation Lifecycle ****
+  1. constructor(props) --> DO: Set up State, DON'T: Cause Side-Effects (e.g. Make an http request)
+  2. componentWillMount() --> DO: Update State, DON'T: Cause Side-Effects
+  3. render() --> Prepare & Structure your JSX Code
+    * Render Child Components
+  4. componentDidMount() --> DO: Cause Side-Effects, DON'T: Update State (triggers re-render)
+
+  ***** Component Remove *****
+  1. componentWillUnmount() --> DO: Perfome any cleanup work
+
+  **** Component Update (Triggered by Parent --> via props) ****
+  1. componentWillReceiveProps(nextProps) --> DO: Sync State to Props, DON'T: Cause Side-Effects
+  2. shouldComponentUpdate(nextProps, nextState) --> DO: May cancel updating process returning false, DON'T: Cause Side-Effects
+  3 componentWillUpdate(nextProps, nextState) --> If you did allow to update the component in shouldComponentUpdate(): DO: Sync State to Props, DON'T: Cause Side-Effects
+  4. render()
+    * Update Child Components Props
+  5. componentDidUpdate() --> DO: Cause Side-Effects, DON'T: Update State (triggers re-render)
+
+  **** Component Update (Triggered by Internal change --> via state) ****
+  1. shouldComponentUpdate(nextProps, nextState) --> DO: May cancel updating process returning false, DON'T: Cause Side-Effects
+  2. componentWillUpdate(nextProps, nextState) --> If you did allow to update the component in shouldComponentUpdate(): DO: Sync State to Props, DON'T: Cause Side-Effects
+  3. render()
+    * Update Child Components Props
+  4. componentDidUpdate() --> DO: Cause Side-Effects, DON'T: Update State (triggers re-render)
+  */

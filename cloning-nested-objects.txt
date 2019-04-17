@@ -1,0 +1,37 @@
+// https://redux.js.org/recipes/structuring-reducers/immutable-update-patterns
+
+const original = {
+  name: 'Alejandro',
+  address: {
+    street: 'Calle 170',
+    zipCode: '102930'
+  },
+  hobbies: ["football", "music"]
+};
+
+const originalCloned = { ...original }; // --> Not copying nested objects or arrays
+// Cloning nested objects:
+const addressCloned = { ...originalCloned.address };
+const hobbiesCloned = [...originalCloned.hobbies];
+const hobbiesChangedWithConcat = original.hobbies.concat('new hobby'); // It is like push, but where push manipulates the original value, concat returns a new array which is the old array plus the argument you add to concat
+originalCloned.name = 'Luis';
+// originalCloned.address.street = 'My Street'; // --> Change the original object
+// originalCloned.hobbies[0] = 'sleeping'; // --> Change the original object
+addressCloned.street = 'My street';
+hobbiesCloned[0] = 'sleeping';
+console.log('[original]', original);
+console.log('[originalCloned]', originalCloned);
+console.log('[addressCloned]', addressCloned);
+console.log('[hobbiesCloned]', hobbiesCloned);
+console.log('[hobbiesChangedWithConcat]', hobbiesChangedWithConcat);
+
+
+const arr = [{ id: 1, value: 'a' }, { id: 2, value: 'b' }, { id: 3, value: 'c' }]; // Since the elements of the array are objects, these objects are still pointing to the original ones, however you could remove the object from the cloned array without affecting the original objects
+const newArr = [...arr];
+const newArr2 = arr.filter(element => true); // filter() returns a new Array
+newArr2[0].value = 'd'; // This changes the original object
+newArr.splice(1, 1);
+newArr2.splice(2, 1);
+console.log('[arr]', arr);
+console.log('[newArr]', newArr);
+console.log('[newArr2]', newArr2);

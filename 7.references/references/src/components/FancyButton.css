@@ -1,0 +1,10 @@
+.FancyButton {
+    color: red;
+    background-color: black;
+    margin: 20px;
+}
+
+.FancyButton:focus {
+    color: white;
+    background-color: chocolate;
+}

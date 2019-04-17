@@ -1,0 +1,15 @@
+*********** Authentication **************
+- Go to console.firebase.google.com
+- Select your project
+- Click "Authentication" menu item
+- Click "Sign-in method" tab
+- Enable "Email/Password" option
+- To find out the url of the rest api for authentication on firebase:
+	- Go to https://firebase.google.com/docs/reference/rest/auth/
+	- Check the setcion "Sign up with email / password" where you can find the url
+	- Replace the API_KEY with the key of your project:
+		- To find out the key of your project:
+			- Go the "Authentication" menu item of your project
+			- Click the "Web setup" button at the top right corner
+			- Copy the value of the property "apiKey" and paste it in the url of the Auth REST API
+- To check authentication in react check the burger-builder project
